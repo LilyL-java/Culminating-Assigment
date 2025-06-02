@@ -9,7 +9,7 @@ import processing.core.PApplet;
  * @author 342619939
  */
 public class GameSet extends PApplet {
-    //stage 0 = beginning, stage 1-2 = rat, stage 3 = bunny, stage 4-5 = sheep, stage 6 = pig
+    //stage 0 = beginning, stage 1-2 = rat, stage 3 = bunny, stage 4-5 = sheep, stage 6-7 = pig
     int stage = 0;
     public static String isAnimal = "";
     boolean ratInitialized = false;
@@ -91,7 +91,22 @@ public class GameSet extends PApplet {
                 this.getSurface().setVisible(false);
                 new Results().setVisible(true);
             }
-        }
+        } else if (stage == 3) {
+            background(0, 103, 199);
+            fill(0);
+            text("Click on each rock to hop across the river!", 20,50);
+            text("I can see the finish line, I'll get 2nd!", 20,80);
+            fill(108, 112, 120);
+            ellipse(250,300,100,50);
+            ellipse(500,300,100,50);
+            ellipse(750,300,100,50);
+            ellipse(1000,300,100,50);
+            if (!bunnyInitialized) {
+                bunny = new Rabbit(this, 175, 175, "Null", "Null", new Date(), "images/Rabbit.png");
+                bunnyInitialized = true;
+            }
+            bunny.draw();
+        }//continue 2025-06-02
     }
     public void mousePressed() {
         if (rat.isClicked(mouseX, mouseY)) {
