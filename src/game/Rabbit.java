@@ -8,10 +8,13 @@ package game;
  *
  * @author 342619939
  */
+import processing.core.PApplet;
+import processing.core.PImage;
+
 public class Rabbit extends Animal {
     
-    public Rabbit(String lastName, String firstName, Date date) {
-        super(lastName, firstName, date);
+    public Rabbit(PApplet p, int x, int y, String lastName, String firstName, Date date, String imagePath) {
+        super(p, x, y, lastName, firstName, date, imagePath);
     }
     public Rabbit() {
         super();
