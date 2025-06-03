@@ -22,6 +22,8 @@ public class GameSet extends PApplet {
     private Animal rat;
     private Animal sheep;
     private Animal ox;
+    private Animal rock [] = new Animal [4];
+    private Animal logs;
     public void settings(){
 	   //sets the size of the window
         size (1000,600);
@@ -55,6 +57,7 @@ public class GameSet extends PApplet {
             background(0, 107, 18);
             fill(0);
             text("Ride the Ox's back!", 20,50);
+            text("Press E to squeak in output", 20, 80);
             ox = new Animal(this, 500, 200, "Null", "Null", new Date(), "images/Ox.png");
             ox.draw();
             if (keyPressed) {
@@ -66,6 +69,8 @@ public class GameSet extends PApplet {
                     rat.move(0, -5);
                 } else if (keyCode == DOWN) {
                     rat.move(0, 5);
+                } else if (key == 'e' || key == 'E') {
+                    System.out.println(rat.makeSound());
                 }
             }
             rat.draw();
@@ -86,7 +91,7 @@ public class GameSet extends PApplet {
             rat.move(1, 0);
             ox.move(1, 0);
             if (ox.x == 1000) {
-                isAnimal = "rat";
+                isAnimal = "Rat";
                 this.noLoop();
                 this.getSurface().setVisible(false);
                 new Results().setVisible(true);
@@ -96,29 +101,53 @@ public class GameSet extends PApplet {
             fill(0);
             text("Click on each rock to hop across the river!", 20,50);
             text("I can see the finish line, I'll get 2nd!", 20,80);
-            fill(108, 112, 120);
-            ellipse(250,300,100,50);
-            ellipse(500,300,100,50);
-            ellipse(750,300,100,50);
-            ellipse(1000,300,100,50);
+            int c = 50;
+            for (int i = 0; i < rock.length; i++) {
+                rock[i] = new Animal(this, c, 300, "Null", "Null", new Date(), "images/Rock.png");
+                rock[i].draw();
+                c = c + 250;
+            }
+
             if (!bunnyInitialized) {
-                bunny = new Rabbit(this, 175, 175, "Null", "Null", new Date(), "images/Rabbit.png");
+                bunny = new Rabbit(this, 50, 250, "Null", "Null", new Date(), "images/Rabbit.png");
                 bunnyInitialized = true;
             }
             bunny.draw();
-        }//continue 2025-06-02
-    }
-    public void mousePressed() {
-        if (rat.isClicked(mouseX, mouseY)) {
-            stage = 1;
-        } else if (bunny.isClicked(mouseX, mouseY)) {
-            stage = 3;
-        } else if (sheep.isClicked(mouseX, mouseY)) {
-            stage = 5;
-        } else if (pig.isClicked(mouseX, mouseY)) {
-            stage = 6;
+            if (!(bunny.isCollidingWith(rock[0]) || bunny.isCollidingWith(rock[1]) || bunny.isCollidingWith(rock[2]) || bunny.isCollidingWith(rock[3]))) {
+                System.out.println("You fell in the water!");
+                exit();
+            }
+            if (bunny.x >= 600) {
+                isAnimal = "Rabbit";
+                this.noLoop();
+                this.getSurface().setVisible(false);
+                new Results().setVisible(true);
+            }
+        } else if (stage == 4) {
+            background(0, 107, 18);
+            fill(0);
+            text("Help the monkey and rooster find logs to make a raft!", 20,50);
+            //continue 2025-06-04
+            //redesign pig and rat to have outlines (ez just find their icons)
         }
     }
+    public void mousePressed() {
+        while (stage == 0) {
+            if (rat.isClicked(mouseX, mouseY)) {
+                stage = 1;
+            } else if (bunny.isClicked(mouseX, mouseY)) {
+                stage = 3;
+            } else if (sheep.isClicked(mouseX, mouseY)) {
+                stage = 4;
+            } else if (pig.isClicked(mouseX, mouseY)) {
+                stage = 6;
+            }
+        }
+        if (stage == 3) {
+            bunny.moveTo(mouseX, mouseY);
+        }
+    }
+    
     
 
 //           this.noLoop();

@@ -81,4 +81,8 @@ public class Animal {
         float d = PApplet.dist(otherCenterX, otherCenterY, centerX, centerY); 
         return d < 168;
     }
+    public void moveTo(int dx, int dy) {
+        x = dx - 64;
+        y = dy - 84;
+    }
 }
