@@ -16,6 +16,7 @@ public class GameSet extends PApplet {
     boolean crossRiver = false;
     boolean bunnyInitialized = false;
     boolean sheepInitialized = false;
+    boolean closeCall = false;
     boolean pigInitialized = false;
     private Animal bunny;
     private Animal pig;
@@ -24,6 +25,10 @@ public class GameSet extends PApplet {
     private Animal ox;
     private Animal rock [] = new Animal [4];
     private Animal logs;
+    private Animal monkey;
+    private Animal rooster;
+    private Animal raft;
+    
     public void settings(){
 	   //sets the size of the window
         size (1000,600);
@@ -56,7 +61,7 @@ public class GameSet extends PApplet {
             }
             background(0, 107, 18);
             fill(0);
-            text("Ride the Ox's back!", 20,50);
+            text("Ride the Ox's back since you can't swim!", 20,50);
             text("Press E to squeak in output", 20, 80);
             ox = new Animal(this, 500, 200, "Null", "Null", new Date(), "images/Ox.png");
             ox.draw();
@@ -88,9 +93,9 @@ public class GameSet extends PApplet {
             }
             rat.draw();
             ox.draw();
-            rat.move(1, 0);
-            ox.move(1, 0);
-            if (ox.x == 1000) {
+            rat.move(2, 0);
+            ox.move(2, 0);
+            if (rat.x == 1000) {
                 isAnimal = "Rat";
                 this.noLoop();
                 this.getSurface().setVisible(false);
@@ -100,7 +105,8 @@ public class GameSet extends PApplet {
             background(0, 103, 199);
             fill(0);
             text("Click on each rock to hop across the river!", 20,50);
-            text("I can see the finish line, I'll get 2nd!", 20,80);
+            text("I can see the finish line, I'll get 4th!", 20,80);
+            text("Press E to squeak in output", 20,110);
             int c = 50;
             for (int i = 0; i < rock.length; i++) {
                 rock[i] = new Animal(this, c, 300, "Null", "Null", new Date(), "images/Rock.png");
@@ -111,6 +117,11 @@ public class GameSet extends PApplet {
             if (!bunnyInitialized) {
                 bunny = new Rabbit(this, 50, 250, "Null", "Null", new Date(), "images/Rabbit.png");
                 bunnyInitialized = true;
+            }
+            if (keyPressed) {
+                if (key == 'e' || key == 'E') {
+                    System.out.println(bunny.makeSound());
+                }
             }
             bunny.draw();
             if (!(bunny.isCollidingWith(rock[0]) || bunny.isCollidingWith(rock[1]) || bunny.isCollidingWith(rock[2]) || bunny.isCollidingWith(rock[3]))) {
@@ -127,8 +138,65 @@ public class GameSet extends PApplet {
             background(0, 107, 18);
             fill(0);
             text("Help the monkey and rooster find logs to make a raft!", 20,50);
+            text("Press E to baa in output", 20, 80);
             //continue 2025-06-04
-            //redesign pig and rat to have outlines (ez just find their icons)
+            logs = new Animal(this, 500, 289, "Null", "Null", new Date(), "images/Logs.png");
+            logs.draw();
+            rooster = new Animal(this, 700, 100, "Null", "Null", new Date(), "images/Rooster.png");
+            rooster.draw();
+            monkey = new Animal(this, 100, 350, "Null", "Null", new Date(), "images/Monkey.png");
+            monkey.draw();
+            if (!sheepInitialized) {
+            sheep = new Sheep(this, 200, 250, "Null", "Null", new Date(), "images/Sheep.png");
+            sheepInitialized = true;
+            }
+            if (keyPressed) {
+                if (keyCode == LEFT) {
+                    sheep.move(-5, 0);
+                } else if (keyCode == RIGHT) {
+                    sheep.move(5, 0);
+                } else if (keyCode == UP) {
+                    sheep.move(0, -5);
+                } else if (keyCode == DOWN) {
+                    sheep.move(0, 5);
+                } else if (key == 'e' || key == 'E') {
+                    System.out.println(sheep.makeSound());
+                }
+            }
+            sheep.draw();
+            if (sheep.isCollidingWith(logs)) {
+                stage = 5;
+            }
+        } else if (stage == 5) {
+            background(0, 103, 199);
+            text("I see land, we made it in time to be 8th-10th!", 20,50);
+            text("Why don't we let Sheep be 8th, Monkey be 9th, and Rooster be 10th?", 20, 80);
+            if (!closeCall) {
+                sheep = new Sheep(this, 150, 150, "Null", "Null", new Date(), "images/Sheep.png");
+                monkey = new Animal(this, 50, 250, "Null", "Null", new Date(), "images/Monkey.png");
+                rooster = new Animal(this, 250, 250, "Null", "Null", new Date(), "images/Rooster.png");
+                raft = new Animal(this, 1, 150, "Null", "Null", new Date(), "images/Raft.png");
+                closeCall = true;
+            }
+            raft.draw();
+            sheep.draw();
+            monkey.draw();
+            rooster.draw();
+            sheep.move(1,0);
+            rooster.move(1,0);
+            monkey.move(1,0);
+            raft.move(1,0);
+            if (raft.x == 1000) {
+                isAnimal = "Sheep";
+                this.noLoop();
+                this.getSurface().setVisible(false);
+                new Results().setVisible(true);
+            }
+        } else if (stage == 6) {
+            background(0, 107, 18);
+            text("Oh! Food..", 20,50);
+            text("Press E to oink in output", 20, 80);
+            //do stage 6 2025-06-04
         }
     }
     public void mousePressed() {
