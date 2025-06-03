@@ -197,6 +197,7 @@ public class GameSet extends PApplet {
             text("Oh! Food..", 20,50);
             text("Press E to oink in output", 20, 80);
             //do stage 6 2025-06-04
+            //stage 7 = pig sleeping and user clicks button to progress
         }
     }
     public void mousePressed() {
