@@ -37,6 +37,10 @@ public class Animal {
       x = x + dx;
       y = y + dy;
     }
+    public void changePlacement(int dx, int dy) {
+        x = dx;
+        y = dy;
+    }
     public void draw() {
       app.image(image, x, y);
     }
@@ -74,6 +78,14 @@ public class Animal {
         int centerY = y+(image.pixelHeight/2);
         int otherCenterX = other.x+(other.image.pixelWidth/2);
         int otherCenterY = other.y+(other.image.pixelHeight/2);
+        float d = PApplet.dist(otherCenterX, otherCenterY, centerX, centerY); 
+        return d < 64;
+    }
+    public boolean isCollidingWith(Props other) {
+        int centerX = x+(image.pixelWidth/2);
+        int centerY = y+(image.pixelHeight/2);
+        int otherCenterX = other.x+(other.getImage().pixelWidth/2);
+        int otherCenterY = other.y+(other.getImage().pixelHeight/2);
         float d = PApplet.dist(otherCenterX, otherCenterY, centerX, centerY); 
         return d < 64;
     }
