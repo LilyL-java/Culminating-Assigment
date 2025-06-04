@@ -1,0 +1,7 @@
+dsa,dwa,32/13/13,Pig
+ew,32d,333/333/333,Rat
+dwa,dwa,44/11/444,Rabbit
+dsad,waasd,433/4/44,Pig
+fds,asd,44/33/33,Rabbit
+petwr,laign,21/11/2007,Sheep
+petwr,laign,21/11/2008,Sheep

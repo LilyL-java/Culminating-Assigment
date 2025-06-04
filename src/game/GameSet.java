@@ -262,7 +262,4 @@ public class GameSet extends PApplet {
             bunny.moveTo(mouseX, mouseY);
         }
     }
-//           this.noLoop();
-//           this.getSurface().setVisible(false);
-//           new Results().setVisible(true);
 }
