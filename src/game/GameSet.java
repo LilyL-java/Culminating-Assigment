@@ -57,9 +57,6 @@ public class GameSet extends PApplet {
             pig.draw();
             rat.draw();
             sheep.draw();
-//            text("E.g. Sheep,Mary,Cook,01,02,2005", 20, 80);
-//            text(userInput, 20,110);
-// ask for user info at end
             
         } else if (stage == 1) {
             if (!ratInitialized) {
