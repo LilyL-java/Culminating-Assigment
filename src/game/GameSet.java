@@ -238,7 +238,7 @@ public class GameSet extends PApplet {
         }
     }
     public void mousePressed() {
-        while (stage == 0) {
+        if (stage == 0) {
             if (rat.isClicked(mouseX, mouseY)) {
                 stage = 1;
             } else if (bunny.isClicked(mouseX, mouseY)) {

@@ -392,6 +392,7 @@ public class Results extends javax.swing.JFrame {
         } catch(IOException ioException) {
             System.err.println("Java Exception: " + ioException);
         }
+        
         System.out.println("");
         System.out.println("There are " + rat + " Rat players stored");
         System.out.println("There are " + rabbit + " Rabbit players stored");
