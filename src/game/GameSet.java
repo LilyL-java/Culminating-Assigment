@@ -10,7 +10,10 @@ import processing.core.PApplet;
  */
 public class GameSet extends PApplet {
     //stage 0 = beginning, stage 1-2 = rat, stage 3 = bunny, stage 4-5 = sheep, stage 6-7 = pig
-    int stage = 0;
+    private int startTime;
+    public static int totalTime;
+    boolean timer = false;
+    int stage = -1;
     public static String isAnimal = "";
     boolean ratInitialized = false;
     boolean crossRiver = false;
@@ -29,6 +32,7 @@ public class GameSet extends PApplet {
     private Animal rooster;
     private Props raft;
     private Props salad;
+    private Props menu;
     private Props day;
     private Props night;
     private Props river;
@@ -37,6 +41,7 @@ public class GameSet extends PApplet {
 	   //sets the size of the window
         size (1000,600);
     }
+    
     public void setup(){
         background(255);
         textSize(20);
@@ -44,12 +49,21 @@ public class GameSet extends PApplet {
         pig = new Pig(this, 350, 250, "Null", "Null", new Date(), "images/Pig.png");
         rat = new Rat(this, 550, 250, "Null", "Null", new Date(), "images/Rat.png");
         sheep = new Sheep(this, 750, 250, "Null", "Null", new Date(), "images/Sheep.png");
+        menu = new Props(this,0,0,"images/MainMenu.png");
         day = new Props(this,0,0,"images/Day.png");
         night = new Props(this,0,0,"images/Night.png");
         river = new Props(this,0,0,"images/River.png");
     }
+    
     public void draw(){
-        if (stage == 0) {
+        if (stage == -1) {
+            background(255);
+            menu.draw();
+        } else if (stage == 0) {
+            if (timer  == false) {
+                startTime = millis();
+                timer = true;
+            }
             background(255);
             fill(0);
             text("Welcome to the Great Race hosted by the Jade Emperor, choose your animal!", 20, 50);
@@ -102,6 +116,10 @@ public class GameSet extends PApplet {
             rat.move(2, 0);
             ox.move(2, 0);
             if (rat.x == 1000) {
+                if (timer == true) {
+                    totalTime = (millis() - startTime)/1000;
+                    timer = false;
+                }
                 isAnimal = "Rat";
                 this.noLoop();
                 this.getSurface().setVisible(false);
@@ -134,6 +152,10 @@ public class GameSet extends PApplet {
                 exit();
             }
             if (bunny.x >= 600) {
+                if (timer == true) {
+                    totalTime = (millis() - startTime)/1000;
+                    timer = false;
+                }
                 isAnimal = "Rabbit";
                 this.noLoop();
                 this.getSurface().setVisible(false);
@@ -194,6 +216,10 @@ public class GameSet extends PApplet {
             monkey.move(1,0);
             raft.move(1,0);
             if (raft.x == 1000) {
+                if (timer == true) {
+                    totalTime = (millis() - startTime)/1000;
+                    timer = false;
+                }
                 isAnimal = "Sheep";
                 this.noLoop();
                 this.getSurface().setVisible(false);
@@ -237,7 +263,13 @@ public class GameSet extends PApplet {
             text("Luckily, it got into 12th place! (Click the pig)", 350, 430);
         }
     }
+    
     public void mousePressed() {
+        if (stage == -1) {
+            if (menu.isClicked(mouseX, mouseY)) {
+                stage = 0;
+            }
+        }
         if (stage == 0) {
             if (rat.isClicked(mouseX, mouseY)) {
                 stage = 1;
@@ -250,6 +282,10 @@ public class GameSet extends PApplet {
             }
         }
         if (stage == 7 && pig.isClicked(mouseX, mouseY)) {
+            if (timer == true) {
+                    totalTime = (millis() - startTime)/1000;
+                    timer = false;
+            }
             isAnimal = "Pig";
             this.noLoop();
             this.getSurface().setVisible(false);

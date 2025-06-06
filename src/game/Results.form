@@ -84,6 +84,7 @@
                                   </Group>
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextField1" alignment="0" min="-2" pref="822" max="-2" attributes="0"/>
+                                  <Component id="jTextField7" alignment="0" min="-2" pref="421" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -124,12 +125,14 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jTextField1" min="-2" pref="55" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jTextField7" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -353,6 +356,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="For more information on each animal&apos;s strength and weaknesses go to: https://chinesenewyear.net/"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextField7">
     </Component>
   </SubComponents>
 </Form>

@@ -70,7 +70,6 @@ public class Animal {
         int centerX = x+(image.pixelWidth/2);
         int centerY = y+(image.pixelHeight/2);
         float d = PApplet.dist(mouseX, mouseY, centerX, centerY);
-        
         return d < 64;
     }
     public boolean isCollidingWith(Animal other) {

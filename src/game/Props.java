@@ -32,4 +32,10 @@ public class Props {
       x = x + dx;
       y = y + dy;
     }
+    public boolean isClicked(int mouseX, int mouseY) {
+        int centerX = x+(image.pixelWidth/2);
+        int centerY = y+(image.pixelHeight/2);
+        float d = PApplet.dist(mouseX, mouseY, centerX, centerY);
+        return d < 1000;
+    }
 }

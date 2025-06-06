@@ -60,6 +60,7 @@ public class Results extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,7 +203,8 @@ public class Results extends javax.swing.JFrame {
                                         .addGap(26, 26, 26)
                                         .addComponent(jLabel19))
                                     .addComponent(jLabel1)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,11 +234,13 @@ public class Results extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(jLabel19))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
@@ -308,6 +312,8 @@ public class Results extends javax.swing.JFrame {
             }
         }
         
+        jTextField7.setText("You took " + GameSet.totalTime + " seconds to complete the game on the " + animal + " route!");
+        
         //for loop of list to see if it equals animal then print the attributes
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -340,7 +346,7 @@ public class Results extends javax.swing.JFrame {
         
         try {
             PrintWriter p = new PrintWriter(new FileWriter("database.txt", true));
-            p.println(animal.getFirstName() + "," + animal.getLastName() + "," + animal.getDOB() + "," + animalTxt);
+            p.println(animal.getFirstName() + "," + animal.getLastName() + "," + animal.getDOB() + "," + animalTxt + "," + GameSet.totalTime);
             p.close();
         } catch(IOException ioException) {
             System.err.println("Java Exception: " + ioException);
@@ -362,6 +368,7 @@ public class Results extends javax.swing.JFrame {
         int rabbit = 0;
         int sheep = 0;
         int pig = 0;
+        int lowestSeconds = 3600;
         
         try {
             Scanner file = new Scanner(new File("database.txt"));
@@ -388,6 +395,9 @@ public class Results extends javax.swing.JFrame {
                 } else {
                     pig++;
                 }
+                if (Integer.parseInt(data[4]) < lowestSeconds) {
+                    lowestSeconds = Integer.parseInt(data[4]);
+                }
             }
         } catch(IOException ioException) {
             System.err.println("Java Exception: " + ioException);
@@ -400,6 +410,8 @@ public class Results extends javax.swing.JFrame {
         System.out.println("There are " + pig + " Pig players stored");
         System.out.println("");
         System.out.println("There are " + animal.getCurrentPlayer() + " players active");
+        System.out.println("");
+        System.out.println("Quickest run was " + lowestSeconds + " seconds");
         System.out.println("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -478,5 +490,6 @@ public class Results extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
