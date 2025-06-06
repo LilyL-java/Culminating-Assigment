@@ -17,7 +17,7 @@ public class Animal {
     private Date date;
     private PImage image;
     private PApplet app;
-    private static final int currentPlayer = 1;
+    private static final int CURRENT_PLAYER = 1;
     
     public Animal(PApplet p, int x, int y, String lastName, String firstName, Date date, String imagePath) {
         this.app = p;
@@ -61,7 +61,7 @@ public class Animal {
         this.date = date;
     }
     public static int getCurrentPlayer() {
-        return currentPlayer;
+        return CURRENT_PLAYER;
     }
     public String makeSound() {
         return "*Animal sound*";
