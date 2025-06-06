@@ -273,7 +273,7 @@ public class GameSet extends PApplet {
             }
         } else if (stage == 0) {
             if (rat.isClicked(mouseX, mouseY)) {
-                stage = 1;
+                stage = 1; 
             } else if (bunny.isClicked(mouseX, mouseY)) {
                 stage = 3;
             } else if (sheep.isClicked(mouseX, mouseY)) {

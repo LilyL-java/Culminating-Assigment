@@ -410,7 +410,7 @@ public class Results extends javax.swing.JFrame {
         System.out.println("");
         System.out.println("There are " + animal.getCurrentPlayer() + " players active");
         System.out.println("");
-        System.out.println("Quickest run was " + lowestSeconds + " seconds");
+        System.out.println("Quickest set run was " + lowestSeconds + " seconds");
         System.out.println("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
