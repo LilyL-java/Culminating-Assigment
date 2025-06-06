@@ -10,6 +10,8 @@ import processing.core.PApplet;
  */
 public class GameSet extends PApplet {
     //stage 0 = beginning, stage 1-2 = rat, stage 3 = bunny, stage 4-5 = sheep, stage 6-7 = pig
+    //Stopwatch idea courtesy to ChatGPT (startTime, totalTime, timer)
+    //Initialized booleans idea courtesy to ChatGPT (bunnyInitialized,ratInitialized,crossRiver,sheepInitialized,closeCall,pigInitialized)
     private int startTime;
     public static int totalTime;
     boolean timer = false;

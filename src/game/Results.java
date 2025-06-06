@@ -330,7 +330,6 @@ public class Results extends javax.swing.JFrame {
         int month = Integer.parseInt(jTextField5.getText());
         int year = Integer.parseInt(jTextField6.getText());
         
-//        Animal animal = new Animal();
         String animalTxt = GameSet.isAnimal;
         if (animalTxt.equals("Rat")) {
             animal = new Rat();
