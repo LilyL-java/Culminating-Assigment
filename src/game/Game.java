@@ -14,6 +14,7 @@ public class Game {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //Sets the game on jFrame GameSet
         GameSet.main("game.GameSet");
     }
     

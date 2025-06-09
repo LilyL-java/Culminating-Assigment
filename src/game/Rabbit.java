@@ -20,7 +20,7 @@ public class Rabbit extends Animal {
      * @param lastName
      * @param firstName
      * @param date
-     * @param imagePath 
+     * @param imagePath
      */
     public Rabbit(PApplet p, int x, int y, String lastName, String firstName, Date date, String imagePath) {
         super(p, x, y, lastName, firstName, date, imagePath);
