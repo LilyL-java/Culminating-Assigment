@@ -11,13 +11,15 @@ import processing.core.PApplet;
 public class GameSet extends PApplet {
     //stage -1 = menu, stage 0 = beginning, stage 1-2 = rat, stage 3 = bunny, stage 4-5 = sheep, stage 6-7 = pig
     //Stopwatch idea courtesy to ChatGPT (startTime, totalTime, timer)
+    //Timer is counted in milliseconds
     //Initialized booleans idea courtesy to ChatGPT (bunnyInitialized,ratInitialized,crossRiver,sheepInitialized,closeCall,pigInitialized)
     private int startTime;
+    //totalTime is public to transfer to results page
     public static int totalTime;
     boolean timer = false;
     //Initialize the stage to menu
     int stage = -1;
-    //Initialize the isAnimal holder
+    //Initialize the isAnimal holder, which is public so it can be transfered to results page
     public static String isAnimal = "";
     //Initialize the booleans below (This is used because whenever I change the object's location, I cannot move it afterwards so this is used to prevent that from happening)
     boolean ratInitialized = false;
@@ -43,6 +45,7 @@ public class GameSet extends PApplet {
     private Props day;
     private Props night;
     private Props river;
+    private Props gameOver;
     
     public void settings(){
 	//Sets the size of the window
@@ -62,6 +65,7 @@ public class GameSet extends PApplet {
         day = new Props(this,0,0,"images/Day.png");
         night = new Props(this,0,0,"images/Night.png");
         river = new Props(this,0,0,"images/River.png");
+        gameOver = new Props(this,0,0,"images/GameOver.png");
     }
     
     public void draw(){
@@ -83,7 +87,7 @@ public class GameSet extends PApplet {
             pig.draw();
             rat.draw();
             sheep.draw();
-            
+            //Stage 1 = rat route
         } else if (stage == 1) {
             //If this boolean is false, Rat object gets placed down at coordinates (200,250)
             if (!ratInitialized) {
@@ -152,6 +156,7 @@ public class GameSet extends PApplet {
                 this.getSurface().setVisible(false);
                 new Results().setVisible(true);
             }
+            //Rabbit route is stage 3
         } else if (stage == 3) {
             //Instructions for the rabbit choice
             //Background is a blue colour for water
@@ -180,37 +185,48 @@ public class GameSet extends PApplet {
                     System.out.println(bunny.makeSound());
                 }
             }
+            //Draws bunny
             bunny.draw();
+            //If the bunny ever collides with any of the rock prop objects, user is redirected to stage 0734 (a game over page)
             if (!(bunny.isCollidingWith(rock[0]) || bunny.isCollidingWith(rock[1]) || bunny.isCollidingWith(rock[2]) || bunny.isCollidingWith(rock[3]))) {
-                System.out.println("You fell in the water!");
-                exit();
+                stage = 0734;
             }
-            if (bunny.x >= 600) {
+            //For the bunny route, if it reaches more or equal to 600 px on the x axis, the timer will stop and totalTime is divided by 1000 since it counts in milliseconds
+            if (bunny.x >= 750) {
                 if (timer == true) {
                     totalTime = (millis() - startTime)/1000;
                     timer = false;
                 }
+                //Sets isAnimal to Rabbit for results page
                 isAnimal = "Rabbit";
+                //Stops looping the Sketch and makes results page visible
                 this.noLoop();
                 this.getSurface().setVisible(false);
                 new Results().setVisible(true);
             }
+            //Sheep route is stage 4
         } else if (stage == 4) {
+            //Day background is drawn and instructions are shown to user
             background(255);
             day.draw();
             fill(255, 247, 0);
             text("Help the monkey and rooster find logs to make a raft!", 20,50);
             text("Press E to baa in output", 20, 80);
+            //Log prop gets drawn into Sketch
             logs = new Props(this, 500, 289, "images/Logs.png");
             logs.draw();
+            //Draws a rooster image
             rooster = new Animal(this, 700, 150, "Null", "Null", new Date(), "images/Rooster.png");
             rooster.draw();
+            //Draws a monkey object
             monkey = new Animal(this, 100, 350, "Null", "Null", new Date(), "images/Monkey.png");
             monkey.draw();
+            //Use of boolean sheepInitialized to reposition and move the sheep
             if (!sheepInitialized) {
             sheep = new Sheep(this, 200, 250, "Null", "Null", new Date(), "images/Sheep.png");
             sheepInitialized = true;
             }
+            //If user clicks arrow keys, it moves the sheep and if pressed the e key, it uses makeSound() in output
             if (keyPressed) {
                 if (keyCode == LEFT) {
                     sheep.move(-5, 0);
@@ -224,16 +240,20 @@ public class GameSet extends PApplet {
                     System.out.println(sheep.makeSound());
                 }
             }
+            //Sheep is drawn
             sheep.draw();
+            //If the sheep collides with the logs prop, stage moves to 5
             if (sheep.isCollidingWith(logs)) {
                 stage = 5;
             }
         } else if (stage == 5) {
+            //River background is drawn
             background(255);
             river.draw();
             fill(0);
             text("I see land, we made it in time to be 8th-10th!", 20,50);
             text("Why don't we let Sheep be 8th, Monkey be 9th, and Rooster be 10th?", 20, 80);
+            //Use of boolean closeCall to reposition and move the three animals and a new raft prop
             if (!closeCall) {
                 sheep = new Sheep(this, 150, 150, "Null", "Null", new Date(), "images/Sheep.png");
                 monkey = new Animal(this, 50, 250, "Null", "Null", new Date(), "images/Monkey.png");
@@ -241,35 +261,46 @@ public class GameSet extends PApplet {
                 raft = new Props(this, 1, 150, "images/Raft.png");
                 closeCall = true;
             }
+            //Draws the animals and raft
             raft.draw();
             sheep.draw();
             monkey.draw();
             rooster.draw();
+            //Moves them all to the right
             sheep.move(1,0);
             rooster.move(1,0);
             monkey.move(1,0);
             raft.move(1,0);
+            //If the raft's x-axis is 1000 (screen length), timer stops and totalTime is set
             if (raft.x == 1000) {
                 if (timer == true) {
                     totalTime = (millis() - startTime)/1000;
                     timer = false;
                 }
+                //isAnimal is set to Sheep for results page
                 isAnimal = "Sheep";
+                //Stops Sketch and makes results page visible
                 this.noLoop();
                 this.getSurface().setVisible(false);
                 new Results().setVisible(true);
             }
+            //Pig route is stage 6
         } else if (stage == 6) {
+            //Draws day background
             background(255);
             day.draw();
+            //Gives user instructions to go to the food and allows to oink in output
             text("I need to finish this race- Oh! Food..", 20,50);
             text("Press E to oink in output", 20, 80);
+            //Use of boolean pigInitialized to reposition and move the pig
             if (!pigInitialized) {
                 pig = new Pig(this, 50, 250, "Null", "Null", new Date(), "images/Pig.png");
                 salad = new Props(this, 800, 250, "images/Salad.png");
                 pigInitialized = true;
             }
+            //Draws in the salad prop (which is the food)
             salad.draw();
+            //If user clicks arrow keys, it moves the pig and if pressed the e key, it uses makeSound() in output
             if (keyPressed) {
                 if (keyCode == LEFT) {
                     pig.move(-5, 0);
@@ -283,26 +314,38 @@ public class GameSet extends PApplet {
                     System.out.println(pig.makeSound());
                 }
             }
+            //Draws in pig object
             pig.draw();
+            //If pig collides with the salad prop, it moves on to stage 7
             if (pig.isCollidingWith(salad)) {
                 stage = 7;
             }
         } else if (stage == 7) {
+            //Draws in the night background
             background(255);
             night.draw();
+            //Uses a method to change placement (x,y coordinates) of the pig since it doesn't need moving
             pig.changePlacement(450,250);
+            //Draws in pig
             pig.draw();
             fill(0);
+            //Gives user instructions to click on the pig
             text("And the pig fell asleep until night..", 350, 400);
             text("Luckily, it got into 12th place! (Click the pig)", 350, 430);
+        } else if (stage == 0734) {
+            gameOver.draw();
         }
     }
     
+    //mousedPressed method to detect if the mouse is clicked
     public void mousePressed() {
+        //If stage is -1 (menu) then if menu is clicked, it moves on to stage 0 (animal selection)
         if (stage == -1) {
             if (menu.isClicked(mouseX, mouseY)) {
                 stage = 0;
             }
+            //If stage is 0, then another if statement
+            //If any of the animal images are clicked then depending on which animal the user chooses, it redirects the scene to the appropriate stage
         } else if (stage == 0) {
             if (rat.isClicked(mouseX, mouseY)) {
                 stage = 1; 
@@ -314,18 +357,28 @@ public class GameSet extends PApplet {
                 stage = 6;
             }
         }
+        //If it is stage 7 (pig route) and the pig is clicked as instructed, then timer stops and totalTime is set
         if (stage == 7 && pig.isClicked(mouseX, mouseY)) {
             if (timer == true) {
                     totalTime = (millis() - startTime)/1000;
                     timer = false;
             }
+            //isAnimal is set as Pig for results page
             isAnimal = "Pig";
+            //Stops loop of Sketch and makes results page appear
             this.noLoop();
             this.getSurface().setVisible(false);
             new Results().setVisible(true);
         }
+        //If it is stage 3 (rabbit stage), this allows user to move the rabbit on the rocks using moveTo method
         if (stage == 3) {
             bunny.moveTo(mouseX, mouseY);
+        }
+        //If it is stage 0734 (game over for rabbit), this allows user to click and exit the program after failing the jumps
+        if (stage == 0734) {
+            if (gameOver.isClicked(mouseX,mouseY)) {
+                exit();
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ package game;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+//Packages are imported
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class Results extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    //New preset Animal object is initialized
     private Animal animal = new Animal();
     public Results() {
         initComponents();
@@ -298,7 +300,9 @@ public class Results extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //Gets the isAnimal in GameSet class and sets as animal
         String animal = GameSet.isAnimal;
+        //Below is a 2D array that holds each of the 4 animal's zodiac characteristics
         String [][] zodiacInfo = {
             //Information courtesy to https://chinesenewyear.net/
             {"Rat", "Rats are charming, quick-witted, intelligent, and smart observers. Rats may come off as selfish when they feel insecure about their place in life."},
@@ -306,6 +310,8 @@ public class Results extends javax.swing.JFrame {
             {"Sheep", "Sheep are patient, determined, elegant, and and selfless. Sheep easily hurt since beneath them lay an inferiority complex that makes them anxious to please."},
             {"Pig", "Pigs are generous, diligent, honest, and optimistic. Pigs can often become lazy, overeating as a comfort to their souls."},
         };
+        //A for loop that compares the animal variable to the row of the 2D array
+        //If they are equal, it prints the 
         for (int i = 0; i < zodiacInfo.length; i++) {
             if (zodiacInfo[i][0].equals(animal)) {
                 jTextField1.setText(zodiacInfo[i][1]);
