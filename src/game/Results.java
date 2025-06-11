@@ -414,7 +414,8 @@ public class Results extends javax.swing.JFrame {
         } catch(IOException ioException) {
             System.err.println("Java Exception: " + ioException);
         }
-        //dsada
+        //Prints out number of each animal using their variables and gets the current amount of players playing using the method
+        //Also prints out the lowest seconds in the file
         System.out.println("");
         System.out.println("There are " + rat + " Rat players stored");
         System.out.println("There are " + rabbit + " Rabbit players stored");
@@ -429,6 +430,7 @@ public class Results extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        //Calls Hello() method
         Hello();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -467,7 +469,7 @@ public class Results extends javax.swing.JFrame {
             }
         });
     }
-    //mr loo u made me do this
+    //Prints "Hello!" in output
     public void Hello() {
         System.out.println("Hello!");
     }
