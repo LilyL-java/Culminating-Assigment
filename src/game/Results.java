@@ -311,16 +311,14 @@ public class Results extends javax.swing.JFrame {
             {"Pig", "Pigs are generous, diligent, honest, and optimistic. Pigs can often become lazy, overeating as a comfort to their souls."},
         };
         //A for loop that compares the animal variable to the row of the 2D array
-        //If they are equal, it prints the 
+        //If they are equal, it prints the column of the row (zodiac's attributes)
         for (int i = 0; i < zodiacInfo.length; i++) {
             if (zodiacInfo[i][0].equals(animal)) {
                 jTextField1.setText(zodiacInfo[i][1]);
             }
         }
-        
+        //Retrieves the totalTime in GameSet and uses that to display how long it took the user to complete the game on whatever route they chose
         jTextField7.setText("You took " + GameSet.totalTime + " seconds to complete the game on the " + animal + " route!");
-        
-        //for loop of list to see if it equals animal then print the attributes
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -330,13 +328,16 @@ public class Results extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        //Gather user's information from the text fields
         String firstName = jTextField2.getText();
         String lastName = jTextField3.getText();
+        //Change day, month, year texts into integer
         int day = Integer.parseInt(jTextField4.getText());
         int month = Integer.parseInt(jTextField5.getText());
         int year = Integer.parseInt(jTextField6.getText());
-        
+        //Take isAnimal from GameSet
         String animalTxt = GameSet.isAnimal;
+        //If isAnimal equals any of the below, it creates a new animal child class based on what is equal
         if (animalTxt.equals("Rat")) {
             animal = new Rat();
         } else if (animalTxt.equals("Rabbit")) {
@@ -346,9 +347,10 @@ public class Results extends javax.swing.JFrame {
         } else {
             animal = new Pig();
         }
+        //Takes user's information and sets the date of birth and their name
         animal.setDOB(new Date(day, month, year));
         animal.setName(lastName, firstName);
-        
+        //Try-catch to use PrintWriter and FileWriter to write in user's name, dob, what animal they chose, and their time
         try {
             PrintWriter p = new PrintWriter(new FileWriter("database.txt", true));
             p.println(animal.getFirstName() + "," + animal.getLastName() + "," + animal.getDOB() + "," + animalTxt + "," + GameSet.totalTime);
@@ -369,12 +371,14 @@ public class Results extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        //Initialize each animal's counter to 0
         int rat = 0;
         int rabbit = 0;
         int sheep = 0;
         int pig = 0;
+        //Initialize seconds to 3600 (1 hour)
         int lowestSeconds = 3600;
-        
+        //Try-catch to go through line of the database.txt file to be printed out
         try {
             Scanner file = new Scanner(new File("database.txt"));
             while (file.hasNext()) {
@@ -385,7 +389,8 @@ public class Results extends javax.swing.JFrame {
         } catch(IOException ioException) {
             System.err.println("Java Exception: " + ioException);
         }
-        
+        //Try-catch to go through file and as each line is taken, the "," is used as a delimiter and it gets split into different parts of data[]
+        //If it equals to any of the words, it adds to the counters depending on what that animal the user picked
         try {
             Scanner file = new Scanner(new File("database.txt"));
             while (file.hasNext()) {
@@ -400,6 +405,8 @@ public class Results extends javax.swing.JFrame {
                 } else {
                     pig++;
                 }
+                //If seconds in a line is less than the preset 3600 seconds, it is set as the lowestSeconds
+                //This repeats with each line, replacing lowestSeconds if one line has less time than what the variable holds
                 if (Integer.parseInt(data[4]) < lowestSeconds) {
                     lowestSeconds = Integer.parseInt(data[4]);
                 }
@@ -407,7 +414,7 @@ public class Results extends javax.swing.JFrame {
         } catch(IOException ioException) {
             System.err.println("Java Exception: " + ioException);
         }
-        
+        //dsada
         System.out.println("");
         System.out.println("There are " + rat + " Rat players stored");
         System.out.println("There are " + rabbit + " Rabbit players stored");
