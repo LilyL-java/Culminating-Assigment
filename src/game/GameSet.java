@@ -98,7 +98,9 @@ public class GameSet extends PApplet {
             background(255);
             day.draw();
             //Instructions shown to user
-            fill(255, 247, 0);
+            fill(0);
+            rect(0,0,360,100);
+            fill(255);
             text("Ride the Ox's back since you can't swim!", 20,50);
             text("Press E to squeak in output", 20, 80);
             //Ox gets drawn
@@ -130,6 +132,8 @@ public class GameSet extends PApplet {
             background(255);
             river.draw();
             fill(0);
+            rect(0,0,360,100);
+            fill(255);
             text("Yes, I can jump off and get 1st place!", 20,50);
             //Use of boolean crossRiver to reposition and move the rat and ox
             if (!crossRiver) {
@@ -162,6 +166,8 @@ public class GameSet extends PApplet {
             //Background is a blue colour for water
             background(0, 103, 199);
             fill(0);
+            rect(0,0,370,150);
+            fill(255);
             text("Click on each rock to hop across the river!", 20,50);
             text("I can see the finish line, I'll get 4th!", 20,80);
             text("Press E to squeak in output", 20,110);
@@ -209,7 +215,9 @@ public class GameSet extends PApplet {
             //Day background is drawn and instructions are shown to user
             background(255);
             day.draw();
-            fill(255, 247, 0);
+            fill(0);
+            rect(0,0,500,100);
+            fill(255);
             text("Help the monkey and rooster find logs to make a raft!", 20,50);
             text("Press E to baa in output", 20, 80);
             //Log prop gets drawn into Sketch
@@ -251,6 +259,8 @@ public class GameSet extends PApplet {
             background(255);
             river.draw();
             fill(0);
+            rect(0,0,600,100);
+            fill(255);
             text("I see land, we made it in time to be 8th-10th!", 20,50);
             text("Why don't we let Sheep be 8th, Monkey be 9th, and Rooster be 10th?", 20, 80);
             //Use of boolean closeCall to reposition and move the three animals and a new raft prop
@@ -289,7 +299,10 @@ public class GameSet extends PApplet {
             //Draws day background
             background(255);
             day.draw();
+            fill(0);
+            rect(0,0,350,100);
             //Gives user instructions to go to the food and allows to oink in output
+            fill(255);
             text("I need to finish this race- Oh! Food..", 20,50);
             text("Press E to oink in output", 20, 80);
             //Use of boolean pigInitialized to reposition and move the pig
