@@ -80,7 +80,10 @@ public class GameSet extends PApplet {
                 timer = true;
             }
             background(255);
+            day.draw();
             fill(0);
+            rect(0,0,700,100);
+            fill(255);
             //Draws in the pre-positioned Animals to be clicked on
             text("Welcome to the Great Race hosted by the Jade Emperor, choose your animal!", 20, 50);
             bunny.draw();
