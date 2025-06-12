@@ -19,6 +19,7 @@ public class GameSet extends PApplet {
     boolean timer = false;
     //Initialize the stage to menu
     int stage = -1;
+    int count = 0;
     //Initialize the isAnimal holder, which is public so it can be transfered to results page
     public static String isAnimal = "";
     //Initialize the booleans below (This is used because whenever I change the object's location, I cannot move it afterwards so this is used to prevent that from happening)
@@ -35,7 +36,7 @@ public class GameSet extends PApplet {
     private Animal sheep;
     private Animal ox;
     private Props rock [] = new Props [4];
-    private Props logs;//
+    private Props logs [] = new Props [3];
     private Animal monkey;
     private Animal rooster;
     private Props raft;
@@ -224,8 +225,12 @@ public class GameSet extends PApplet {
             text("Help the monkey and rooster find logs to make a raft!", 20,50);
             text("Press E to baa in output", 20, 80);
             //Log prop gets drawn into Sketch
-            logs = new Props(this, 500, 289, "images/Logs.png");
-            logs.draw();
+            logs [0] = new Props(this, 500, 289, "images/Logs.png");
+            logs[0].draw();
+            logs [1] = new Props(this, 250, 200, "images/Logs.png");
+            logs[1].draw();
+            logs [2] = new Props(this, 863, 467, "images/Logs.png");
+            logs[2].draw();
             //Draws a rooster image
             rooster = new Animal(this, 700, 150, "Null", "Null", new Date(), "images/Rooster.png");
             rooster.draw();
@@ -251,10 +256,24 @@ public class GameSet extends PApplet {
                     System.out.println(sheep.makeSound());
                 }
             }
-            //Sheep is drawn
+            //Sheep is drawn (work on this)
             sheep.draw();
             //If the sheep collides with the logs prop, stage moves to 5
-            if (sheep.isCollidingWith(logs)) {
+            if (sheep.isCollidingWith(logs[0])) {
+                logs[0].move(1000,1000);
+            }
+            if (sheep.isCollidingWith(logs[1])) {
+                logs[1].move(1000,1000);
+            }
+            if (sheep.isCollidingWith(logs[2])) {
+                logs[2].move(1000,1000);
+            }
+            for (int i = 0; i < logs.length; i++) {
+                if (logs[i].x >1000 && logs[i].y > 1000) {
+                    count++;
+                }
+            }
+            if (count == 3) {
                 stage = 5;
             }
         } else if (stage == 5) {
