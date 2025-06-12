@@ -47,8 +47,17 @@ public class Props {
      * @param dy 
      */
     public void move(int dx, int dy) {
-      x = x + dx;
-      y = y + dy;
+        x = x + dx;
+        y = y + dy;
+    }
+    /**
+     * This method changes the x and y coordinates of a Props object
+     * @param dx
+     * @param dy 
+     */
+    public void changePlacement(int dx, int dy) {
+        x = dx;
+        y = dy;
     }
     /**
      * This method detects whether or not user has clicked on something

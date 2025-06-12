@@ -224,22 +224,18 @@ public class GameSet extends PApplet {
             fill(255);
             text("Help the monkey and rooster find logs to make a raft!", 20,50);
             text("Press E to baa in output", 20, 80);
-            //Log prop gets drawn into Sketch
-            logs [0] = new Props(this, 500, 289, "images/Logs.png");
-            logs[0].draw();
-            logs [1] = new Props(this, 250, 200, "images/Logs.png");
-            logs[1].draw();
-            logs [2] = new Props(this, 863, 467, "images/Logs.png");
-            logs[2].draw();
             //Draws a rooster image
             rooster = new Animal(this, 700, 150, "Null", "Null", new Date(), "images/Rooster.png");
             rooster.draw();
             //Draws a monkey object
             monkey = new Animal(this, 100, 350, "Null", "Null", new Date(), "images/Monkey.png");
             monkey.draw();
-            //Use of boolean sheepInitialized to reposition and move the sheep
+            //Use of boolean sheepInitialized to reposition and move the sheep as well as the logs
             if (!sheepInitialized) {
-            sheep = new Sheep(this, 200, 250, "Null", "Null", new Date(), "images/Sheep.png");
+                sheep = new Sheep(this, 200, 250, "Null", "Null", new Date(), "images/Sheep.png");
+                logs [0] = new Props(this, 500, 289, "images/Logs.png");
+                logs [1] = new Props(this, 250, 200, "images/Logs.png");
+                logs [2] = new Props(this, 863, 467, "images/Logs.png"); 
             sheepInitialized = true;
             }
             //If user clicks arrow keys, it moves the sheep and if pressed the e key, it uses makeSound() in output
@@ -256,24 +252,23 @@ public class GameSet extends PApplet {
                     System.out.println(sheep.makeSound());
                 }
             }
-            //Sheep is drawn (work on this)
+            //Sheep and logs are drawn
+            logs[0].draw();
+            logs[1].draw();
+            logs[2].draw();
             sheep.draw();
-            //If the sheep collides with the logs prop, stage moves to 5
+            //If the sheep collides with the logs props, changes the x and y coordinates of logs outside screen
+            //Stage moves to 5 if all of them are outside of screen
             if (sheep.isCollidingWith(logs[0])) {
-                logs[0].move(1000,1000);
+                logs[0].changePlacement(2000,2000);
             }
             if (sheep.isCollidingWith(logs[1])) {
-                logs[1].move(1000,1000);
+                logs[1].changePlacement(2000,2000);
             }
             if (sheep.isCollidingWith(logs[2])) {
-                logs[2].move(1000,1000);
+                logs[2].changePlacement(2000,2000);
             }
-            for (int i = 0; i < logs.length; i++) {
-                if (logs[i].x >1000 && logs[i].y > 1000) {
-                    count++;
-                }
-            }
-            if (count == 3) {
+            if (logs[0].x >1000 && logs[1].x > 1000 && logs[2].x > 1000) {
                 stage = 5;
             }
         } else if (stage == 5) {
