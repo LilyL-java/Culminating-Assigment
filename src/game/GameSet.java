@@ -277,6 +277,7 @@ public class GameSet extends PApplet {
             river.draw();
             fill(0);
             rect(0,0,600,100);
+            //Text is given to user
             fill(255);
             text("I see land, we made it in time to be 8th-10th!", 20,50);
             text("Why don't we let Sheep be 8th, Monkey be 9th, and Rooster be 10th?", 20, 80);
@@ -322,7 +323,7 @@ public class GameSet extends PApplet {
             fill(255);
             text("I need to finish this race- Oh! Food..", 20,50);
             text("Press E to oink in output", 20, 80);
-            //Use of boolean pigInitialized to reposition and move the pig
+            //Use of boolean pigInitialized to reposition and move the pig as well as add a salad prop
             if (!pigInitialized) {
                 pig = new Pig(this, 50, 250, "Null", "Null", new Date(), "images/Pig.png");
                 salad = new Props(this, 800, 250, "images/Salad.png");
