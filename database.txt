@@ -1,11 +1,5 @@
-dsa,dwa,32/13/13,Pig,10
-ew,32d,333/333/333,Rat,20
-dwa,dwa,44/11/444,Rabbit,49
-dsad,waasd,433/4/44,Pig,50
-fds,asd,44/33/33,Rabbit,7
-petwr,laign,21/11/2007,Sheep,99
-petwr,laign,21/11/2008,Sheep,33
-dwas,dwasd,32/232/123,Rabbit,55
-peppa,pig,32/13/1999,Pig,66
-ewqq,weewq,32/123/3333,Rabbit,3
-sadsad,dsadsas,321/123/32,Rabbit,2
+Jake,Mill,30/11/2013,Pig,10
+Emmy,Lin,05/4/2009,Rat,20
+Uwawa,Uwa,88/88/8888,Rabbit,49
+Peta,Lang,08/11/2005,Sheep,33
+Lily,Liang,24/7/2007,Rabbit,3

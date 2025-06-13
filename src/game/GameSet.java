@@ -131,6 +131,7 @@ public class GameSet extends PApplet {
             if (rat.isCollidingWith(ox)) {
                 stage = 2;
             }
+            //Cutscene after stage 1
         } else if (stage == 2) {
             //Background river is drawn (Just the river)
             background(255);
@@ -258,7 +259,7 @@ public class GameSet extends PApplet {
             logs[2].draw();
             sheep.draw();
             //If the sheep collides with the logs props, changes the x and y coordinates of logs outside screen
-            //Stage moves to 5 if all of them are outside of screen
+            //Stage moves to 5 if all of them are outside of screen (or in another words, have been collided with)
             if (sheep.isCollidingWith(logs[0])) {
                 logs[0].changePlacement(2000,2000);
             }
@@ -271,6 +272,7 @@ public class GameSet extends PApplet {
             if (logs[0].x >1000 && logs[1].x > 1000 && logs[2].x > 1000) {
                 stage = 5;
             }
+            //Cutscene for sheep is stage 5
         } else if (stage == 5) {
             //River background is drawn
             background(255);
