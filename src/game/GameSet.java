@@ -11,6 +11,7 @@ import processing.core.PApplet;
 public class GameSet extends PApplet {
     //stage -1 = menu, stage 0 = beginning, stage 1-2 = rat, stage 3 = bunny, stage 4-5 = sheep, stage 6-7 = pig
     //Stopwatch idea courtesy to ChatGPT (startTime, totalTime, timer)
+    //Move from Sketch to jFrame courtesy to ChatGPT
     //Timer is counted in milliseconds
     //Initialized booleans idea courtesy to ChatGPT (bunnyInitialized,ratInitialized,crossRiver,sheepInitialized,closeCall,pigInitialized)
     private int startTime;
@@ -20,7 +21,6 @@ public class GameSet extends PApplet {
     boolean timer = false;
     //Initialize the stage to menu
     int stage = -1;
-    int count = 0;
     //Initialize the isAnimal holder, which is public so it can be transfered to results page
     public static String isAnimal = "";
     //Initialize the booleans below (This is used because whenever I change the object's location, I cannot move it afterwards so this is used to prevent that from happening)
