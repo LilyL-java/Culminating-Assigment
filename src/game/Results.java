@@ -388,7 +388,7 @@ public class Results extends javax.swing.JFrame {
         } catch(IOException ioException) {
             System.err.println("Java Exception: " + ioException);
         }
-        //Let user know their data has been added in a text field
+        //Let user know their data has been added in a text label
         jLabel20.setText("Data added!");
     }//GEN-LAST:event_jButton2ActionPerformed
 

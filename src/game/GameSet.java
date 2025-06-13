@@ -16,6 +16,7 @@ public class GameSet extends PApplet {
     private int startTime;
     //totalTime is public to transfer to results page
     public static int totalTime;
+    //If timer is true, the timer is on, if false it is not on
     boolean timer = false;
     //Initialize the stage to menu
     int stage = -1;
@@ -80,12 +81,14 @@ public class GameSet extends PApplet {
                 startTime = millis();
                 timer = true;
             }
+            //Day background is drawn
             background(255);
             day.draw();
             fill(0);
             rect(0,0,700,100);
             fill(255);
             //Draws in the pre-positioned Animals to be clicked on
+            //Added an intro and instructions
             text("Welcome to the Great Race hosted by the Jade Emperor, choose your animal!", 20, 50);
             bunny.draw();
             pig.draw();
@@ -101,11 +104,11 @@ public class GameSet extends PApplet {
             //Background day gets drawn (Daytime)
             background(255);
             day.draw();
-            //Instructions shown to user
+            //Instructions shown to user to move to the ox and press e
             fill(0);
-            rect(0,0,360,100);
+            rect(0,0,480,100);
             fill(255);
-            text("Ride the Ox's back since you can't swim!", 20,50);
+            text("Ride the Ox's back since you can't swim! (Arrow keys)", 20,50);
             text("Press E to squeak in output", 20, 80);
             //Ox gets drawn
             ox = new Animal(this, 500, 200, "Null", "Null", new Date(), "images/Ox.png");
@@ -139,6 +142,7 @@ public class GameSet extends PApplet {
             fill(0);
             rect(0,0,360,100);
             fill(255);
+            //Text is shown
             text("Yes, I can jump off and get 1st place!", 20,50);
             //Use of boolean crossRiver to reposition and move the rat and ox
             if (!crossRiver) {
@@ -167,12 +171,12 @@ public class GameSet extends PApplet {
             }
             //Rabbit route is stage 3
         } else if (stage == 3) {
-            //Instructions for the rabbit choice
             //Background is a blue colour for water
             background(0, 103, 199);
             fill(0);
             rect(0,0,370,150);
             fill(255);
+            //Instruction for user is displayed to move to rabbit and press e
             text("Click on each rock to hop across the river!", 20,50);
             text("I can see the finish line, I'll get 4th!", 20,80);
             text("Press E to squeak in output", 20,110);
@@ -217,13 +221,13 @@ public class GameSet extends PApplet {
             }
             //Sheep route is stage 4
         } else if (stage == 4) {
-            //Day background is drawn and instructions are shown to user
+            //Day background is drawn and instructions are shown to user to move the sheep and press e
             background(255);
             day.draw();
             fill(0);
-            rect(0,0,500,100);
+            rect(0,0,600,100);
             fill(255);
-            text("Help the monkey and rooster find logs to make a raft!", 20,50);
+            text("Help the monkey and rooster find logs to make a raft! (Arrow keys)", 20,50);
             text("Press E to baa in output", 20, 80);
             //Draws a rooster image
             rooster = new Animal(this, 700, 150, "Null", "Null", new Date(), "images/Rooster.png");
@@ -320,10 +324,10 @@ public class GameSet extends PApplet {
             background(255);
             day.draw();
             fill(0);
-            rect(0,0,350,100);
+            rect(0,0,450,100);
             //Gives user instructions to go to the food and allows to oink in output
             fill(255);
-            text("I need to finish this race- Oh! Food..", 20,50);
+            text("I need to finish this race- Oh! Food.. (Arrow keys)", 20,50);
             text("Press E to oink in output", 20, 80);
             //Use of boolean pigInitialized to reposition and move the pig as well as add a salad prop
             if (!pigInitialized) {
